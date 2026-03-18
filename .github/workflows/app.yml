@@ -1,0 +1,2 @@
+- name: GitHub App Installation token
+  uses: jwenz723/github-app-installation-token@v0.0.5
