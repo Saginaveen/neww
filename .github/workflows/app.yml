@@ -1,12 +1,24 @@
-name: GitHub App Token Test
-
-on:
-  workflow_dispatch:  # lets you run it manually
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: GitHub App Installation token
-        uses: jwenz723/github-app-installation-token@v0.0.5
+            - name: GitHub App token
+  # You may pin to the exact commit or the version.
+  # uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a
+  uses: tibdex/github-app-token@v2.1.0
+  with:
+    # ID of the GitHub App.
+    app_id: 
+    # The API URL of the GitHub server.
+    github_api_url: # optional, default is ${{ github.api_url }}
+    # The mode used to retrieve the installation for which the token will be requested.
+One of: - id: use the installation with the specified ID. - organization: use an organization installation (https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-an-organization-installation-for-the-authenticated-app). - repository: use a repository installation (https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-repository-installation-for-the-authenticated-app). - user: use a user installation (https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-user-installation-for-the-authenticated-app).
+    installation_retrieval_mode: # optional, default is repository
+    # The payload used to retrieve the installation.
+Examples for each retrieval mode: - id: 1337 - organization: github - repository: tibdex/github-app-token - user: tibdex
+    installation_retrieval_payload: # optional, default is ${{ github.repository }}
+    # The JSON-stringified permissions granted to the token. Defaults to all permissions granted to the GitHub app. See https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#create-an-installation-access-token-for-an-app's `permissions`.
+    permissions: # optional
+    # Private key of the GitHub App (can be Base64 encoded).
+    private_key: 
+    # The JSON-stringified array of the full names of the repositories the token should have access to. Defaults to all repositories that the installation can access. See https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#create-an-installation-access-token-for-an-app's `repositories`.
+    repositories: # optional
+    # Revoke the token at the end of the job.
+    revoke: # optional, default is true
+          
