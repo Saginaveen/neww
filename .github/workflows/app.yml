@@ -1,2 +1,12 @@
-- name: GitHub App Installation token
-  uses: jwenz723/github-app-installation-token@v0.0.5
+name: GitHub App Token Test
+
+on:
+  workflow_dispatch:  # lets you run it manually
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: GitHub App Installation token
+        uses: jwenz723/github-app-installation-token@v0.0.5
